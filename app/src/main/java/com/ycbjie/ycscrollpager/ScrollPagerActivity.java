@@ -35,7 +35,7 @@ public class ScrollPagerActivity extends AppCompatActivity {
         vp.setOrientation(DirectionalViewPager.VERTICAL);
         BannerPagerAdapter adapter = new BannerPagerAdapter(list);
         vp.setAdapter(adapter);
-        vp.setAnimationDuration(1000);
+        vp.setAnimationDuration(3000);
         vp.setOnViewPagerListener(new OnPagerListener() {
             @Override
             public void onInitComplete() {
