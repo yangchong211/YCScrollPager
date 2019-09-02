@@ -22,6 +22,7 @@ import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.widget.Scroller;
 
@@ -142,25 +143,10 @@ public class DirectionalViewPager extends ViewPager implements ViewPager.OnPageC
                     return t * t * t * t * t + 1.0f;
                 }
             };
-            Scroller mScroller = new Scroller(getContext(),interpolator){
-                final int time = 2000;
-                @Override
-                public void startScroll(int x, int y, int dx, int dy, int duration) {
-                    // 如果手工滚动,则加速滚动
-                    if (System.currentTimeMillis() - mRecentTouchTime > time) {
-                        duration = during;
-                    } else {
-                        duration /= 2;
-                    }
-                    super.startScroll(x, y, dx, dy, duration);
-                }
-
-                @Override
-                public void startScroll(int x, int y, int dx, int dy) {
-                    super.startScroll(x, y, dx, dy,during);
-                }
-            };
-            mField.set(this, mScroller);
+            FixedSpeedScroller scroller = new FixedSpeedScroller(getContext(),
+                    interpolator, mRecentTouchTime);
+            scroller.setDuration(during);
+            mField.set(this, scroller);
         } catch (NoSuchFieldException | IllegalAccessException | IllegalArgumentException e) {
             e.printStackTrace();
         }
@@ -281,6 +267,10 @@ public class DirectionalViewPager extends ViewPager implements ViewPager.OnPageC
         return mAdapter;
     }
 
+    /**
+     * 这个方法是设置滚动的
+     * @param item                          索引
+     */
     @Override
     public void setCurrentItem(int item) {
         mPopulatePending = false;
@@ -338,6 +328,11 @@ public class DirectionalViewPager extends ViewPager implements ViewPager.OnPageC
         mOnPageChangeListener = listener;
     }
 
+    /**
+     * 这个方法是控制滚动效果的
+     * @param x
+     * @param y
+     */
     void smoothScrollTo(int x, int y) {
         if (getChildCount() == 0) {
             // Nothing to do.
