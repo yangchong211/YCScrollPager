@@ -1,51 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
 
 
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/activity_main"
+    <TextView
+        android:id="@+id/tv_1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="10dp">
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/darker_gray"
+        android:text="1，使用ViewPager实现仿抖音上下一次滑动一页效果"/>
+
+    <TextView
+        android:id="@+id/tv_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/darker_gray"
+        android:text="2，使用ViewPager实现仿抖音上下一次滑动一页效果"/>
 
 
-        <TextView
-            android:id="@+id/tv_1_1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:layout_marginTop="10dp"
-            android:background="@android:color/darker_gray"
-            android:text="1.1常用下拉刷新，上拉加载更多，自动加载下一页"/>
-
-        <TextView
-            android:id="@+id/tv_1_2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:layout_marginTop="10dp"
-            android:background="@android:color/darker_gray"
-            android:text="1.2常用下拉刷新，上拉加载更多，手动加载下一页"/>
-
-
-        <TextView
-            android:id="@+id/tv_1_3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:layout_marginTop="10dp"
-            android:background="@android:color/darker_gray"
-            android:text="1.2常用下拉刷新，上拉加载更多，双列数据"/>
+    <TextView
+        android:id="@+id/tv_1_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/darker_gray"
+        android:text="1.2常用下拉刷新，上拉加载更多，双列数据"/>
 
 
 
-    </LinearLayout>
-
-
-
-</ScrollView>
+</LinearLayout>
 
