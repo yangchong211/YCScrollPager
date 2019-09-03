@@ -2,9 +2,12 @@ package com.yc.pagerlib.pager;
 
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.yc.pagerlib.inter.OnPagerListener;
 
 import java.util.List;
 
@@ -23,10 +26,21 @@ public abstract class AbsPagerAdapter<T> extends PagerAdapter {
 
 	private List<T> mDataList;
 	private SparseArray<View> mViewSparseArray;
+	private OnPagerListener mOnViewPagerListener;
+	private int startPosition;
 
 	public AbsPagerAdapter(List<T> dataList) {
-		mDataList = dataList;
+		this.mDataList = dataList;
 		mViewSparseArray = new SparseArray<>(dataList.size());
+	}
+
+	/**
+	 * 设置监听
+	 * @param listener                      listener
+	 */
+	public void setOnViewPagerListener(OnPagerListener listener){
+		this.mOnViewPagerListener = listener;
+		listener.onInitComplete();
 	}
 
 	@Override
@@ -45,10 +59,14 @@ public abstract class AbsPagerAdapter<T> extends PagerAdapter {
 	@NonNull
 	@Override
 	public Object instantiateItem(@NonNull ViewGroup container, int position) {
+		this.startPosition = position;
 		View view = mViewSparseArray.get(position);
 		if (view == null) {
 			view = getView(container,position);
 			mViewSparseArray.put(position, view);
+		}
+		if (mOnViewPagerListener!=null){
+			mOnViewPagerListener.onPageSelected(position,true);
 		}
 		container.addView(view);
 		return view;
@@ -57,6 +75,15 @@ public abstract class AbsPagerAdapter<T> extends PagerAdapter {
 	@Override
 	public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
 		container.removeView(mViewSparseArray.get(position));
+		if (startPosition>position){
+			if (mOnViewPagerListener!=null){
+				mOnViewPagerListener.onPageRelease(true,position);
+			}
+		} else {
+			if (mOnViewPagerListener!=null){
+				mOnViewPagerListener.onPageRelease(false,position);
+			}
+		}
 	}
 
 	/**

@@ -22,7 +22,6 @@ import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.widget.Scroller;
 
@@ -31,10 +30,8 @@ import com.yc.pagerlib.inter.OnPagerListener;
 public class DirectionalViewPager extends ViewPager implements ViewPager.OnPageChangeListener{
 
     private static final String TAG = "DirectionalViewPager";
-    private static final boolean DEBUG = false;
-
+    private static final boolean DEBUG = true;
     private static final boolean USE_CACHE = false;
-
     public static final int HORIZONTAL = 0;
     public static final int VERTICAL = 1;
 
@@ -95,15 +92,6 @@ public class DirectionalViewPager extends ViewPager implements ViewPager.OnPageC
 
     private int mScrollState = SCROLL_STATE_IDLE;
     private long mRecentTouchTime;
-    private OnPagerListener mOnViewPagerListener;
-    /**
-     * 位移，用来判断移动方向
-     */
-    private int mDrift;
-    /**
-     * 索引
-     */
-    private int position;
 
     public DirectionalViewPager(Context context) {
         super(context);
@@ -159,76 +147,47 @@ public class DirectionalViewPager extends ViewPager implements ViewPager.OnPageC
         if (mAdapter != null) {
             populate();
         }
-        this.addOnAttachStateChangeListener(listener);
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.removeOnAttachStateChangeListener(listener);
     }
 
     /**
-     * 这是为了响应该视图中的内部滚动(即,视图滚动了它自己的内容)。这通常是由于
-     * {@link #scrollBy(int, int)}或{@link #scrollTo(int, int)}已经存在调用。
-     * @param l                         横向位移
-     * @param t                         竖直方向滑动位移
-     * @param oldl                      之前横向位移
-     * @param oldt                      之前竖直方向滑动位移
+     * 在viewpager滑动过程中执行，并且会被调用很多次。
+     * 需要注意的是，position的值使用等于屏幕最左侧暴露出来的view的position，即使该view已经快看不见了。
+     * 第二个参数positionOffset：从左向右滑动时该值从1---0 变化，从右向左滑动时该值从0---1变化。
+     * 第三个参数positionOffsetPixels：这个参数是viewpager滑动偏移量的具体值
+     *      比如屏幕宽度值是1080px而viewpager的宽度等于屏幕宽度，则这个值就会在0-1080之间变化。
+     * @param i                             索引
+     * @param v                             判断滑动方向
+     * @param i1                            滑动偏移量
      */
-    @Override
-    protected void onScrollChanged(int l, int t, int oldl, int oldt) {
-        super.onScrollChanged(l, t, oldl, oldt);
-        mDrift = t - oldt;
-    }
-
-    /**
-     * 设置监听
-     * @param listener                      listener
-     */
-    public void setOnViewPagerListener(OnPagerListener listener){
-        this.mOnViewPagerListener = listener;
-    }
-
     @Override
     public void onPageScrolled(int i, float v, int i1) {
         super.onPageScrolled(i, v, i1);
     }
 
+    /**
+     * 这个方法会在viewpager快要成功切换的时候调用。怎么理解这句话呢
+     * 当我们滑动距离很小的时候，viewpager会自动回弹到当前页，也就是不进行页面切换，
+     * 此时该方法不会被调用，因为页面并没有被成功切换；当我们滑动距离很大的时候，
+     * viewpager会自动帮我们滑动到下一页，此时手指抬起，viewpager判断即将成功切换到下一页，
+     * 那么该方法就会被调用，并且position的值等于即将切换过去的页面的下标。
+     * @param i                             索引
+     */
     @Override
     public void onPageSelected(int i) {
-        this.position = i;
     }
 
+    /**
+     * 主要用来监测viewpager的滑动状态：
+     * 当我们手指按下时 state=1，
+     * 当我们手指抬起时 state=2，
+     * 当viewpager处于空闲状态时 state=0；
+     * 所以我们完全可以在state=0时 去加载或者处理我们的事情，因为这时候滑动已经结束。
+     * @param i                             状态
+     */
     @Override
     public void onPageScrollStateChanged(int i) {
 
     }
-
-    /**
-     * attach状态变化的监听listener
-     */
-    private View.OnAttachStateChangeListener listener = new View.OnAttachStateChangeListener() {
-        @Override
-        public void onViewAttachedToWindow(View v) {
-            if (mOnViewPagerListener != null) {
-                mOnViewPagerListener.onInitComplete();
-            }
-        }
-
-        @Override
-        public void onViewDetachedFromWindow(View v) {
-            if (mDrift >= 0){
-                if (mOnViewPagerListener != null) {
-                    mOnViewPagerListener.onPageRelease(true , position);
-                }
-            }else {
-                if (mOnViewPagerListener != null) {
-                    mOnViewPagerListener.onPageRelease(false , position);
-                }
-            }
-        }
-    };
 
     private void setScrollState(int newState) {
         if (mScrollState == newState) {
@@ -403,7 +362,6 @@ public class DirectionalViewPager extends ViewPager implements ViewPager.OnPageC
         }
 
         if (newCurrItem >= 0) {
-            // TODO This currently causes a jump.
             setCurrentItemInternal(newCurrItem, false, true);
             needPopulate = true;
         }
@@ -451,7 +409,9 @@ public class DirectionalViewPager extends ViewPager implements ViewPager.OnPageC
         for (int i=0; i<mItems.size(); i++) {
             ItemInfo ii = mItems.get(i);
             if ((ii.position < startPos || ii.position > endPos) && !ii.scrolling) {
-                if (DEBUG) Log.i(TAG, "removing: " + ii.position + " @ " + i);
+                if (DEBUG) {
+                    Log.i(TAG, "removing: " + ii.position + " @ " + i);
+                }
                 mItems.remove(i);
                 i--;
                 mAdapter.destroyItem(this, ii.position, ii.object);
@@ -464,7 +424,9 @@ public class DirectionalViewPager extends ViewPager implements ViewPager.OnPageC
                     lastPos = startPos;
                 }
                 while (lastPos <= endPos && lastPos < ii.position) {
-                    if (DEBUG) Log.i(TAG, "inserting: " + lastPos + " @ " + i);
+                    if (DEBUG) {
+                        Log.i(TAG, "inserting: " + lastPos + " @ " + i);
+                    }
                     addNewItem(lastPos, i);
                     lastPos++;
                     i++;
@@ -662,8 +624,10 @@ public class DirectionalViewPager extends ViewPager implements ViewPager.OnPageC
         for (int i = 0; i < size; ++i) {
             final View child = getChildAt(i);
             if (child.getVisibility() != GONE) {
-                if (DEBUG) Log.v(TAG, "Measuring #" + i + " " + child
-                        + ": " + mChildWidthMeasureSpec + " x " + mChildHeightMeasureSpec);
+                if (DEBUG) {
+                    Log.v(TAG, "Measuring #" + i + " " + child
+                            + ": " + mChildWidthMeasureSpec + " x " + mChildHeightMeasureSpec);
+                }
                 child.measure(mChildWidthMeasureSpec, mChildHeightMeasureSpec);
             }
         }
@@ -710,9 +674,11 @@ public class DirectionalViewPager extends ViewPager implements ViewPager.OnPageC
                 } else {
                     childTop += off;
                 }
-                if (DEBUG) Log.v(TAG, "Positioning #" + i + " " + child + " f=" + ii.object
-                        + ":" + childLeft + "," + childTop + " " + child.getMeasuredWidth()
-                        + "x" + child.getMeasuredHeight());
+                if (DEBUG) {
+                    Log.v(TAG, "Positioning #" + i + " " + child + " f=" + ii.object
+                            + ":" + childLeft + "," + childTop + " " + child.getMeasuredWidth()
+                            + "x" + child.getMeasuredHeight());
+                }
                 child.layout(childLeft, childTop,
                         childLeft + child.getMeasuredWidth(),
                         childTop + child.getMeasuredHeight());
@@ -722,10 +688,14 @@ public class DirectionalViewPager extends ViewPager implements ViewPager.OnPageC
 
     @Override
     public void computeScroll() {
-        if (DEBUG) Log.i(TAG, "computeScroll: finished=" + mScroller.isFinished());
+        if (DEBUG) {
+            Log.i(TAG, "computeScroll: finished=" + mScroller.isFinished());
+        }
         if (!mScroller.isFinished()) {
             if (mScroller.computeScrollOffset()) {
-                if (DEBUG) Log.i(TAG, "computeScroll: still scrolling");
+                if (DEBUG) {
+                    Log.i(TAG, "computeScroll: still scrolling");
+                }
                 int oldX = getScrollX();
                 int oldY = getScrollY();
                 int x = mScroller.getCurrX();
@@ -799,7 +769,9 @@ public class DirectionalViewPager extends ViewPager implements ViewPager.OnPageC
         // Always take care of the touch gesture being complete.
         if (action == MotionEvent.ACTION_CANCEL || action == MotionEvent.ACTION_UP) {
             // Release the drag.
-            if (DEBUG) Log.v(TAG, "Intercept done!");
+            if (DEBUG) {
+                Log.v(TAG, "Intercept done!");
+            }
             mIsBeingDragged = false;
             mIsUnableToDrag = false;
             mActivePointerId = INVALID_POINTER;
@@ -879,7 +851,9 @@ public class DirectionalViewPager extends ViewPager implements ViewPager.OnPageC
                         // direction to be counted as a drag...  abort
                         // any attempt to drag horizontally, to work correctly
                         // with children that have scrolling containers.
-                        if (DEBUG) Log.v(TAG, "Starting unable to drag!");
+                        if (DEBUG) {
+                            Log.v(TAG, "Starting unable to drag!");
+                        }
                         mIsUnableToDrag = true;
                     }
                 }
@@ -911,9 +885,11 @@ public class DirectionalViewPager extends ViewPager implements ViewPager.OnPageC
                     mIsUnableToDrag = false;
                 }
 
-                if (DEBUG) Log.v(TAG, "Down at " + mLastMotionX + "," + mLastMotionY
-                        + " mIsBeingDragged=" + mIsBeingDragged
-                        + "mIsUnableToDrag=" + mIsUnableToDrag);
+                if (DEBUG) {
+                    Log.v(TAG, "Down at " + mLastMotionX + "," + mLastMotionY
+                            + " mIsBeingDragged=" + mIsBeingDragged
+                            + "mIsUnableToDrag=" + mIsUnableToDrag);
+                }
                 break;
             }
 
@@ -988,9 +964,13 @@ public class DirectionalViewPager extends ViewPager implements ViewPager.OnPageC
                     }
 
 
-                    if (DEBUG) Log.v(TAG, "Moved x to " + x + "," + y + " diff=" + xDiff + "," + yDiff);
+                    if (DEBUG) {
+                        Log.v(TAG, "Moved x to " + x + "," + y + " diff=" + xDiff + "," + yDiff);
+                    }
                     if (primaryDiff > mTouchSlop && primaryDiff > secondaryDiff) {
-                        if (DEBUG) Log.v(TAG, "Starting drag!");
+                        if (DEBUG) {
+                            Log.v(TAG, "Starting drag!");
+                        }
                         mIsBeingDragged = true;
                         if (mOrientation == HORIZONTAL) {
                             mLastMotionX = x;

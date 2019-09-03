@@ -2,6 +2,7 @@ package com.ycbjie.ycscrollpager;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,8 +12,6 @@ import android.widget.ImageView;
 import com.yc.pagerlib.inter.OnPagerListener;
 import com.yc.pagerlib.pager.AbsPagerAdapter;
 import com.yc.pagerlib.pager.DirectionalViewPager;
-import com.yc.pagerlib.pager.LayoutViewPager;
-
 import java.util.List;
 
 
@@ -36,7 +35,7 @@ public class ScrollPagerActivity extends AppCompatActivity {
         BannerPagerAdapter adapter = new BannerPagerAdapter(list);
         vp.setAdapter(adapter);
         vp.setAnimationDuration(3000);
-        vp.setOnViewPagerListener(new OnPagerListener() {
+        adapter.setOnViewPagerListener(new OnPagerListener() {
             @Override
             public void onInitComplete() {
                 System.out.println("OnPagerListener---onInitComplete--"+"初始化完成");
