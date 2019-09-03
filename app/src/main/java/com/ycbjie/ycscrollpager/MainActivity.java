@@ -26,6 +26,19 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this,ScrollRecyclerActivity.class));
             }
         });
+
+        findViewById(R.id.tv_3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
+
+        findViewById(R.id.tv_4).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,ScrollRecyclerVideoActivity.class));
+            }
+        });
     }
 
 
