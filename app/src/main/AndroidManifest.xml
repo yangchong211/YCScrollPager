@@ -25,6 +25,10 @@
         </activity>
         <activity android:name=".ScrollRecyclerActivity"/>
         <activity android:name=".ScrollPagerActivity"/>
+        <activity android:name=".ScrollPagerVideoActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            />
         <activity android:name=".ScrollRecyclerVideoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"

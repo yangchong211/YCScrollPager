@@ -25,7 +25,7 @@
         android:padding="10dp"
         android:layout_marginTop="10dp"
         android:background="@android:color/darker_gray"
-        android:text="2，使用ViewPager实现仿抖音上下一次滑动一页图片效果"/>
+        android:text="2，使用RecyclerView实现仿抖音上下一次滑动一页图片效果"/>
 
 
     <TextView
@@ -44,7 +44,7 @@
         android:padding="10dp"
         android:layout_marginTop="10dp"
         android:background="@android:color/darker_gray"
-        android:text="4，使用ViewPager实现仿抖音上下一次滑动一页视频效果"/>
+        android:text="4，使用RecyclerView实现仿抖音上下一次滑动一页视频效果"/>
 
 
 

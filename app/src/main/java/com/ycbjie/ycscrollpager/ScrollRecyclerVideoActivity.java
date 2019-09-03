@@ -52,7 +52,7 @@ public class ScrollRecyclerVideoActivity extends AppCompatActivity {
                     10,"",DataProvider.VideoPlayerList[a]);
             list.add(video);
         }
-        VideoAdapter adapter = new VideoAdapter(this,list);
+        final VideoAdapter adapter = new VideoAdapter(this,list);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(viewPagerLayoutManager);
         viewPagerLayoutManager.setOnViewPagerListener(new OnPagerListener() {
