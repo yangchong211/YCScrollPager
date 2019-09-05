@@ -8,6 +8,7 @@ import android.content.Context;
 import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.v4.os.ParcelableCompat;
 import android.support.v4.os.ParcelableCompatCreatorCallbacks;
 import android.support.v4.view.MotionEventCompat;
@@ -25,8 +26,15 @@ import android.view.ViewGroup;
 import android.view.animation.Interpolator;
 import android.widget.Scroller;
 
-import com.yc.pagerlib.inter.OnPagerListener;
-
+/**
+ * <pre>
+ *     @author 杨充
+ *     blog  : https://github.com/yangchong211
+ *     time  : 2019/6/20
+ *     desc  : 参考JakeWharton大神的代码
+ *     revise:
+ * </pre>
+ */
 public class DirectionalViewPager extends ViewPager implements ViewPager.OnPageChangeListener{
 
     private static final String TAG = "DirectionalViewPager";
@@ -289,8 +297,8 @@ public class DirectionalViewPager extends ViewPager implements ViewPager.OnPageC
 
     /**
      * 这个方法是控制滚动效果的
-     * @param x
-     * @param y
+     * @param x                 x
+     * @param y                 y
      */
     void smoothScrollTo(int x, int y) {
         if (getChildCount() == 0) {
@@ -475,6 +483,7 @@ public class DirectionalViewPager extends ViewPager implements ViewPager.OnPageC
             out.writeParcelable(adapterState, flags);
         }
 
+        @NonNull
         @Override
         public String toString() {
             return "FragmentPager.SavedState{"
@@ -807,7 +816,7 @@ public class DirectionalViewPager extends ViewPager implements ViewPager.OnPageC
                  * of the down event.
                  */
                 final int activePointerId = mActivePointerId;
-                if (activePointerId == INVALID_POINTER && Build.VERSION.SDK_INT > Build.VERSION_CODES.DONUT) {
+                if (activePointerId == INVALID_POINTER) {
                     // If we don't have a valid id, the touch down wasn't on content.
                     break;
                 }

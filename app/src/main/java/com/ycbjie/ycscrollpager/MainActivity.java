@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.tv_3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,ScrollPagerVideoActivity.class));
+                startActivity(new Intent(MainActivity.this,ScrollPagerTwoActivity.class));
             }
         });
 
