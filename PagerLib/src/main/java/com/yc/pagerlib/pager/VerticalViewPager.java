@@ -41,7 +41,6 @@ public class VerticalViewPager extends ViewPager {
         setOverScrollMode(OVER_SCROLL_NEVER);
     }
 
-
     public boolean isVertical() {
         return isVertical;
     }
