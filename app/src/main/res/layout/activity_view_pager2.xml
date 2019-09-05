@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.yc.pagerlib.pager.VerticalViewPager
+    <com.yc.pagerlib.pager.DirectionalViewPager
         android:id="@+id/vp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

@@ -12,12 +12,14 @@ import android.widget.ImageView;
 import com.yc.pagerlib.inter.OnPagerListener;
 import com.yc.pagerlib.pager.AbsPagerAdapter;
 import com.yc.pagerlib.pager.DirectionalViewPager;
+import com.yc.pagerlib.pager.VerticalViewPager;
+
 import java.util.List;
 
 
 public class ScrollPagerActivity extends AppCompatActivity {
 
-    private DirectionalViewPager vp;
+    private VerticalViewPager vp;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,26 +33,10 @@ public class ScrollPagerActivity extends AppCompatActivity {
         List<PersonData> list = DataProvider.getList(this,30);
         vp.setOffscreenPageLimit(1);
         vp.setCurrentItem(0);
-        vp.setOrientation(DirectionalViewPager.VERTICAL);
+        vp.setVertical(true);
         BannerPagerAdapter adapter = new BannerPagerAdapter(list);
         vp.setAdapter(adapter);
         vp.setAnimationDuration(3000);
-        adapter.setOnViewPagerListener(new OnPagerListener() {
-            @Override
-            public void onInitComplete() {
-                System.out.println("OnPagerListener---onInitComplete--"+"初始化完成");
-            }
-
-            @Override
-            public void onPageRelease(boolean isNext, int position) {
-                System.out.println("OnPagerListener---onPageRelease--"+position+"-----"+isNext);
-            }
-
-            @Override
-            public void onPageSelected(int position, boolean isBottom) {
-                System.out.println("OnPagerListener---onPageSelected--"+position+"-----"+isBottom);
-            }
-        });
     }
 
     class BannerPagerAdapter extends AbsPagerAdapter {

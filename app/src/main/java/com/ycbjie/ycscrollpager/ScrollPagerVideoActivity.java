@@ -29,7 +29,7 @@ public class ScrollPagerVideoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_pager);
+        setContentView(R.layout.activity_view_pager2);
         vp = findViewById(R.id.vp);
         initViewPager();
     }
