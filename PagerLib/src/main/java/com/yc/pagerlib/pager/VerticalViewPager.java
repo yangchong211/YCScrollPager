@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Interpolator;
@@ -188,5 +189,36 @@ public class VerticalViewPager extends ViewPager {
         }
     }
 
+    /**
+     * 修改滑动灵敏度
+     * @param flingDistance                     滑动惯性，默认是75
+     * @param minimumVelocity                   最小滑动值，默认是1200
+     */
+    public void setScrollFling(int flingDistance , int minimumVelocity){
+        try {
+            Field mFlingDistance = ViewPager.class.getDeclaredField("mFlingDistance");
+            mFlingDistance.setAccessible(true);
+            Object o = mFlingDistance.get(this);
+            Log.d("setScrollFling",o.toString());
+            //默认值75
+            mFlingDistance.set(this, flingDistance);
 
+            Field mMinimumVelocity = ViewPager.class.getDeclaredField("mMinimumVelocity");
+            mMinimumVelocity.setAccessible(true);
+            Object o1 = mMinimumVelocity.get(this);
+            Log.d("setScrollFling",o1.toString());
+            //默认值1200
+            mMinimumVelocity.set(this,minimumVelocity);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void setCurrentItem(int item) {
+        /*
+         * true表示有过渡效果，false表示直接切换到对应页面，给人感觉是会闪烁一下
+         */
+        setCurrentItem(item,true);
+    }
 }

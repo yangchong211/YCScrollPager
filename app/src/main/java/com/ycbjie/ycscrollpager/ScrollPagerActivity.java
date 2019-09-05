@@ -34,6 +34,7 @@ public class ScrollPagerActivity extends AppCompatActivity {
         vp.setOffscreenPageLimit(1);
         vp.setCurrentItem(0);
         vp.setVertical(true);
+        //vp.setScrollFling();
         BannerPagerAdapter adapter = new BannerPagerAdapter(list);
         vp.setAdapter(adapter);
         vp.setAnimationDuration(3000);
