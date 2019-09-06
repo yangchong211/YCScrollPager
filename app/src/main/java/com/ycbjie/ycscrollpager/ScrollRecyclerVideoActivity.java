@@ -1,6 +1,7 @@
 package com.ycbjie.ycscrollpager;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.OrientationHelper;
@@ -73,7 +74,7 @@ public class ScrollRecyclerVideoActivity extends AppCompatActivity {
         });
         recyclerView.setRecyclerListener(new RecyclerView.RecyclerListener() {
             @Override
-            public void onViewRecycled(RecyclerView.ViewHolder holder) {
+            public void onViewRecycled(@NonNull RecyclerView.ViewHolder holder) {
                 VideoPlayer videoPlayer = ((VideoAdapter.VideoViewHolder) holder).mVideoPlayer;
                 if (videoPlayer == VideoPlayerManager.instance().getCurrentVideoPlayer()) {
                     VideoPlayerManager.instance().releaseVideoPlayer();
