@@ -74,6 +74,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
             ImageUtils.loadImgByPicasso(itemView.getContext(),data.get(position),
                     R.drawable.image_default,mController.imageView());
             mVideoPlayer.setUp(video.getVideoUrl(), null);
+            mVideoPlayer.start();
 
             //mVideoPlayer.setPlayerType(ConstantKeys.IjkPlayerType.TYPE_IJK);
             //mVideoPlayer.setController(mController);

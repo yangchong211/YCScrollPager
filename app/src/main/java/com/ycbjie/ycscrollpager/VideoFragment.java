@@ -71,6 +71,7 @@ public class VideoFragment extends  Fragment{
         videoPlayer.setController(controller);
         ImageUtils.loadImgByPicasso(getActivity(),image,
                 R.drawable.image_default,controller.imageView());
+        videoPlayer.start();
     }
 
 }
