@@ -3,11 +3,10 @@ package com.ycbjie.ycscrollpager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 
-import com.yc.pagerlib.inter.OnPagerListener;
+import com.yc.pagerlib.recycler.OnPagerListener;
 import com.yc.pagerlib.recycler.PagerLayoutManager;
 
 import org.yczbj.ycvideoplayerlib.manager.VideoPlayerManager;

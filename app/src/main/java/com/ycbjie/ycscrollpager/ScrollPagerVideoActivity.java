@@ -7,15 +7,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
-import com.yc.pagerlib.inter.OnPagerListener;
+import com.yc.pagerlib.recycler.OnPagerListener;
 import com.yc.pagerlib.pager.AbsPagerAdapter;
 import com.yc.pagerlib.pager.DirectionalViewPager;
 
 import org.yczbj.ycvideoplayerlib.constant.ConstantKeys;
 import org.yczbj.ycvideoplayerlib.controller.VideoPlayerController;
-import org.yczbj.ycvideoplayerlib.manager.VideoPlayerManager;
 import org.yczbj.ycvideoplayerlib.player.VideoPlayer;
 
 import java.util.ArrayList;

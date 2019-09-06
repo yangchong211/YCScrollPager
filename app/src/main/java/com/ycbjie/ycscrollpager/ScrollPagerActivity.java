@@ -2,16 +2,13 @@ package com.ycbjie.ycscrollpager;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.yc.pagerlib.inter.OnPagerListener;
 import com.yc.pagerlib.pager.AbsPagerAdapter;
-import com.yc.pagerlib.pager.DirectionalViewPager;
 import com.yc.pagerlib.pager.VerticalViewPager;
 
 import java.util.List;

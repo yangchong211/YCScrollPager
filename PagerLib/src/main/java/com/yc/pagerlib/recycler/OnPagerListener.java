@@ -1,4 +1,4 @@
-package com.yc.pagerlib.inter;
+package com.yc.pagerlib.recycler;
 
 /**
  * <pre>
