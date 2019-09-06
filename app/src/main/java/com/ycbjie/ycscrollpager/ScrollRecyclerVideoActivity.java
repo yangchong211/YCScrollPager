@@ -54,6 +54,7 @@ public class ScrollRecyclerVideoActivity extends AppCompatActivity {
         final VideoAdapter adapter = new VideoAdapter(this,list);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(viewPagerLayoutManager);
+        recyclerView.setLayoutManager(viewPagerLayoutManager);
         viewPagerLayoutManager.setOnViewPagerListener(new OnPagerListener() {
             @Override
             public void onInitComplete() {

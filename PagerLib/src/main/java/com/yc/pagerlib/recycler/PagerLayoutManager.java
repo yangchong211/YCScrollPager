@@ -76,7 +76,10 @@ public class PagerLayoutManager extends LinearLayoutManager {
         }
         try {
             //attachToRecyclerView源码上的方法可能会抛出IllegalStateException异常，这里手动捕获一下
-            mPagerSnapHelper.attachToRecyclerView(mRecyclerView);
+            RecyclerView.OnFlingListener onFlingListener = mRecyclerView.getOnFlingListener();
+            if (onFlingListener==null){
+                mPagerSnapHelper.attachToRecyclerView(mRecyclerView);
+            }
         } catch (IllegalStateException e){
             e.printStackTrace();
         }
