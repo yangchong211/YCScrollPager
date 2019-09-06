@@ -69,6 +69,7 @@ public class ScrollRecyclerVideoActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position, boolean isBottom) {
                 System.out.println("OnPagerListener---onPageSelected--"+position+"-----"+isBottom);
+
             }
         });
         recyclerView.setRecyclerListener(new RecyclerView.RecyclerListener() {
