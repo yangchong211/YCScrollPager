@@ -6,13 +6,17 @@
     - 2.2 使用RecyclerView
 - 03.具体使用
     - 3.0 如何引用该lib
-    - 3.1 ViewPager使用
-    - 3.2 LinearLayoutManager
+    - 3.1 ViewPager实现方式
+    - 3.2 RecyclerView实现方式
 - 04.部分优化点
     - 4.1 ViewPager改变滑动速率
     - 4.2 PagerSnapHelper注意点
     - 4.3 自定义LayoutManager注意点
 - 06.其他说明介绍
+
+
+
+
 
 ### 01.先来看一下需求
 - 项目中的视频播放，要求实现抖音那种竖直方向一次滑动一页的效果。滑动要流畅不卡顿，并且手动触摸滑动超过1/2的时候松开可以滑动下一页，没有超过1/2返回原页。
@@ -57,7 +61,7 @@ implementation 'com.yc:PagerLib:1.0.1'
 
 
 
-#### 3.1 ViewPager使用
+#### 3.1 ViewPager实现方式
 ##### 3.1.1 使用VerticalViewPager的方式如下所示
 - 在布局中
     ```
@@ -144,7 +148,7 @@ implementation 'com.yc:PagerLib:1.0.1'
     ```
 
 
-#### 3.2 LinearLayoutManager
+#### 3.2 RecyclerView实现方式
 - 代码中直接使用PagerLayoutManager，如下所示
     ```
     PagerLayoutManager viewPagerLayoutManager = new PagerLayoutManager(
