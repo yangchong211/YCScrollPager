@@ -43,7 +43,6 @@ public class ScrollPagerVideoActivity extends AppCompatActivity {
             Video video = new Video(DataProvider.VideoPlayerTitle[a],
                     10,"",DataProvider.VideoPlayerList[a]);
             list.add(video);
-
             fragments.add(VideoFragment.newInstant(DataProvider.VideoPlayerList[a]));
         }
         vp.setOffscreenPageLimit(1);
