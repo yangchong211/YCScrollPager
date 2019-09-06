@@ -1,19 +1,17 @@
 package com.ycbjie.ycscrollpager;
 
-import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
-import com.yc.pagerlib.recycler.OnPagerListener;
-import com.yc.pagerlib.pager.AbsPagerAdapter;
 import com.yc.pagerlib.pager.DirectionalViewPager;
 
-import org.yczbj.ycvideoplayerlib.constant.ConstantKeys;
-import org.yczbj.ycvideoplayerlib.controller.VideoPlayerController;
+import org.yczbj.ycvideoplayerlib.manager.VideoPlayerManager;
 import org.yczbj.ycvideoplayerlib.player.VideoPlayer;
 
 import java.util.ArrayList;
@@ -32,85 +30,52 @@ public class ScrollPagerVideoActivity extends AppCompatActivity {
         initViewPager();
     }
 
+    @Override
+    public void onBackPressed() {
+        if (VideoPlayerManager.instance().onBackPressed()){
+            return;
+        }
+        super.onBackPressed();
+    }
+
+
     private void initViewPager() {
         List<Video> list = new ArrayList<>();
+        ArrayList<Fragment> fragments = new ArrayList<>();
         for (int a = 0; a< DataProvider.VideoPlayerList.length ; a++){
             Video video = new Video(DataProvider.VideoPlayerTitle[a],
                     10,"",DataProvider.VideoPlayerList[a]);
             list.add(video);
+
+            fragments.add(VideoFragment.newInstant(DataProvider.VideoPlayerList[a]));
         }
         vp.setOffscreenPageLimit(1);
         vp.setCurrentItem(0);
         vp.setOrientation(DirectionalViewPager.VERTICAL);
-        final BannerPagerAdapter adapter = new BannerPagerAdapter(this,list);
-        vp.setAdapter(adapter);
-        vp.setAnimationDuration(3000);
-        adapter.setOnViewPagerListener(new OnPagerListener() {
-            @Override
-            public void onInitComplete() {
-                System.out.println("OnPagerListener---onInitComplete--"+"初始化完成");
-            }
-
-            @Override
-            public void onPageRelease(boolean isNext, int position) {
-                System.out.println("OnPagerListener---onPageRelease--"+position+"-----"+isNext);
-                //VideoPlayer videoPlayer = ((VideoAdapter.VideoViewHolder) holder).mVideoPlayer;
-//                VideoPlayer videoPlayer = adapter.videoPlayer;
-//                if (videoPlayer == VideoPlayerManager.instance().getCurrentVideoPlayer()) {
-//                    VideoPlayerManager.instance().releaseVideoPlayer();
-//                }
-            }
-
-            @Override
-            public void onPageSelected(int position, boolean isBottom) {
-                System.out.println("OnPagerListener---onPageSelected--"+position+"-----"+isBottom);
-//                adapter.setController();
-            }
-        });
+        FragmentManager supportFragmentManager = getSupportFragmentManager();
+        MyPagerAdapter myPagerAdapter = new MyPagerAdapter(fragments, supportFragmentManager);
+        vp.setAdapter(myPagerAdapter);
     }
 
-    class BannerPagerAdapter extends AbsPagerAdapter {
 
-        private List<Video> videos;
-        private VideoPlayerController controller;
-        private VideoPlayer videoPlayer;
+    class MyPagerAdapter extends FragmentStatePagerAdapter{
 
-        public BannerPagerAdapter(Context context, List<Video> dataList) {
-            super(dataList);
-            this.videos = dataList;
-            //创建视频播放控制器，主要只要创建一次就可以呢
-            controller = new VideoPlayerController(context);
-        }
+        private ArrayList<Fragment> list;
 
-        /**
-         * 设置视频控制器参数
-         */
-        void setController() {
-            //只设置一次
-            if (videoPlayer!=null){
-                videoPlayer.setPlayerType(ConstantKeys.IjkPlayerType.TYPE_IJK);
-                videoPlayer.setController(controller);
-            }
+        public MyPagerAdapter(ArrayList<Fragment> list , FragmentManager fm){
+            super(fm);
+            this.list = list;
         }
 
         @Override
-        public View getView(ViewGroup container, int position) {
-            View view = LayoutInflater.from(container.getContext()).inflate(
-                    R.layout.item_video_pager, container, false);
-            videoPlayer = view.findViewById(R.id.video_player);
-            Video video = videos.get(position);
-
-            //controller.setTitle(video.getTitle());
-            //mController.setLength(video.getLength());
-            ImageUtils.loadImgByPicasso(view.getContext(),video.getImageUrl(),
-                    R.drawable.image_default,controller.imageView());
-            //videoPlayer.setUp(video.getVideoUrl(), null);
-            return view;
+        public Fragment getItem(int i) {
+            return list.get(i);
         }
 
         @Override
         public int getCount() {
-            return videos.size();
+            return list!=null ? list.size() : 0;
         }
     }
+
 }

@@ -35,7 +35,7 @@
         android:padding="10dp"
         android:layout_marginTop="10dp"
         android:background="@android:color/darker_gray"
-        android:text="3，使用ViewPager实现仿抖音上下一次滑动一页视频效果"/>
+        android:text="3，使用ViewPager实现仿抖音上下一次滑动一页图片效果"/>
 
     <TextView
         android:id="@+id/tv_4"
@@ -47,6 +47,14 @@
         android:text="4，使用RecyclerView实现仿抖音上下一次滑动一页视频效果"/>
 
 
+    <TextView
+        android:id="@+id/tv_5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/darker_gray"
+        android:text="5，使用ViewPager实现仿抖音上下一次滑动一页视频效果"/>
 
 </LinearLayout>
 

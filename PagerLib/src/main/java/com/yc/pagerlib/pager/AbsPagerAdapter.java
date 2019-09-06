@@ -28,14 +28,6 @@ public abstract class AbsPagerAdapter<T> extends PagerAdapter {
 		this.mDataList = dataList;
 	}
 
-	/**
-	 * 设置监听
-	 * @param listener                      listener
-	 */
-	public void setOnViewPagerListener(OnPagerListener listener){
-		listener.onInitComplete();
-	}
-
 	@Override
 	public int getCount() {
 		if (mDataList == null) {
