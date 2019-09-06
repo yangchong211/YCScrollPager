@@ -77,6 +77,7 @@ public class PagerLayoutManager extends LinearLayoutManager {
         try {
             //attachToRecyclerView源码上的方法可能会抛出IllegalStateException异常，这里手动捕获一下
             RecyclerView.OnFlingListener onFlingListener = mRecyclerView.getOnFlingListener();
+            //源码中判断了，如果onFlingListener已经存在的话，再次设置就直接抛出异常，那么这里可以判断一下
             if (onFlingListener==null){
                 mPagerSnapHelper.attachToRecyclerView(mRecyclerView);
             }
