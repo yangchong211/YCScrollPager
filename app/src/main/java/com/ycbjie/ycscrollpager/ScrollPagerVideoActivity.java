@@ -37,13 +37,14 @@ public class ScrollPagerVideoActivity extends AppCompatActivity {
 
 
     private void initViewPager() {
+        ArrayList<Integer> data = DataProvider.getData(this);
         List<Video> list = new ArrayList<>();
         ArrayList<Fragment> fragments = new ArrayList<>();
         for (int a = 0; a< DataProvider.VideoPlayerList.length ; a++){
             Video video = new Video(DataProvider.VideoPlayerTitle[a],
                     10,"",DataProvider.VideoPlayerList[a]);
             list.add(video);
-            fragments.add(VideoFragment.newInstant(DataProvider.VideoPlayerList[a]));
+            fragments.add(VideoFragment.newInstant(DataProvider.VideoPlayerList[a],data.get(a)));
         }
         vp.setOffscreenPageLimit(1);
         vp.setCurrentItem(0);

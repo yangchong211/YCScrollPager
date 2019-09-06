@@ -12,11 +12,11 @@ public class ImageUtils {
      * @param resId
      * @param target        控件
      */
-    public static void loadImgByPicasso(Context context , String path , int resId, ImageView target) {
+    public static void loadImgByPicasso(Context context , int path , int resId, ImageView target) {
         if(target==null){
             return;
         }
-        if(path!=null && path.length()>0){
+        if(path!=0){
             Picasso.with(context)
                     .load(path)
                     .placeholder(resId)

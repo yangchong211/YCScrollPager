@@ -18,6 +18,7 @@ public class VideoFragment extends  Fragment{
 
     public VideoPlayer videoPlayer;
     private String url;
+    private int image;
     private int index;
 
     @Override
@@ -26,10 +27,11 @@ public class VideoFragment extends  Fragment{
         VideoPlayerManager.instance().releaseVideoPlayer();
     }
 
-    public static Fragment newInstant(String url){
+    public static Fragment newInstant(String url , int image){
         VideoFragment videoFragment = new VideoFragment();
         Bundle bundle = new Bundle();
         bundle.putString("url",url);
+        bundle.putInt("image",image);
         videoFragment.setArguments(bundle);
         return videoFragment;
     }
@@ -40,6 +42,7 @@ public class VideoFragment extends  Fragment{
         Bundle arguments = getArguments();
         if (arguments != null) {
             url = arguments.getString("url");
+            image = arguments.getInt("image");
         }
     }
 
@@ -66,7 +69,7 @@ public class VideoFragment extends  Fragment{
         videoPlayer.setUp(url,null);
         videoPlayer.setPlayerType(ConstantKeys.IjkPlayerType.TYPE_IJK);
         videoPlayer.setController(controller);
-        ImageUtils.loadImgByPicasso(getActivity(),"",
+        ImageUtils.loadImgByPicasso(getActivity(),image,
                 R.drawable.image_default,controller.imageView());
     }
 

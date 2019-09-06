@@ -101,4 +101,16 @@ public class DataProvider {
             "逗比逗比把本地项目代码复制到拷贝的仓库",
     };
 
+
+    public static ArrayList<Integer> getData(Context context){
+        ArrayList<Integer> data = new ArrayList<>();
+        TypedArray bannerImage = context.getResources().obtainTypedArray(R.array.image_girls);
+        for (int i = 0; i < 50 ; i++) {
+            int image = bannerImage.getResourceId(i, R.drawable.girl2);
+            data.add(image);
+        }
+        bannerImage.recycle();
+        return data;
+    }
+
 }

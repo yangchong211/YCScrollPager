@@ -11,16 +11,19 @@ import org.yczbj.ycvideoplayerlib.constant.ConstantKeys;
 import org.yczbj.ycvideoplayerlib.controller.VideoPlayerController;
 import org.yczbj.ycvideoplayerlib.player.VideoPlayer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHolder> {
 
     private Context mContext;
     private List<Video> mVideoList;
+    private ArrayList<Integer> data;
 
     public VideoAdapter(Context context, List<Video> videoList) {
         mContext = context;
         mVideoList = videoList;
+        data = DataProvider.getData(context);
     }
 
     @Override
@@ -37,7 +40,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
     @Override
     public void onBindViewHolder(@NonNull VideoViewHolder holder, int position) {
         Video video = mVideoList.get(position);
-        holder.bindData(video);
+        holder.bindData(video,position);
     }
 
     @Override
@@ -65,10 +68,10 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
             mVideoPlayer.setController(mController);
         }
 
-        void bindData(Video video) {
+        void bindData(Video video, int position) {
             mController.setTitle(video.getTitle());
             //mController.setLength(video.getLength());
-            ImageUtils.loadImgByPicasso(itemView.getContext(),video.getImageUrl(),
+            ImageUtils.loadImgByPicasso(itemView.getContext(),data.get(position),
                     R.drawable.image_default,mController.imageView());
             mVideoPlayer.setUp(video.getVideoUrl(), null);
 
