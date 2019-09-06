@@ -65,7 +65,7 @@ public class PagerLayoutManager extends LinearLayoutManager {
      * @param recyclerView                          recyclerView
      */
     @Override
-    public void onAttachedToWindow(RecyclerView recyclerView) {
+    public void onAttachedToWindow(RecyclerView recyclerView){
         if (recyclerView == null) {
             throw new IllegalArgumentException("The attach RecycleView must not null!!");
         }
