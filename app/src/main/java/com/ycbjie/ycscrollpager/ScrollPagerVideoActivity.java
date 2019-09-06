@@ -1,18 +1,15 @@
 package com.ycbjie.ycscrollpager;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v7.app.AppCompatActivity;
-import android.view.ViewGroup;
 
 import com.yc.pagerlib.pager.DirectionalViewPager;
 
 import org.yczbj.ycvideoplayerlib.manager.VideoPlayerManager;
-import org.yczbj.ycvideoplayerlib.player.VideoPlayer;
 
 import java.util.ArrayList;
 import java.util.List;

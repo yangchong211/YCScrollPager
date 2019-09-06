@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +14,11 @@ import org.yczbj.ycvideoplayerlib.controller.VideoPlayerController;
 import org.yczbj.ycvideoplayerlib.manager.VideoPlayerManager;
 import org.yczbj.ycvideoplayerlib.player.VideoPlayer;
 
-public class VideoFragment extends  BaseLazyFragment{
+public class VideoFragment extends  Fragment{
 
     public VideoPlayer videoPlayer;
     private String url;
+    private int index;
 
     @Override
     public void onStop() {
@@ -57,11 +59,15 @@ public class VideoFragment extends  BaseLazyFragment{
     }
 
     @Override
-    protected void loadData() {
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        Log.d("初始化操作","------"+index++);
         VideoPlayerController controller = new VideoPlayerController(getActivity());
         videoPlayer.setUp(url,null);
         videoPlayer.setPlayerType(ConstantKeys.IjkPlayerType.TYPE_IJK);
         videoPlayer.setController(controller);
+        ImageUtils.loadImgByPicasso(getActivity(),"",
+                R.drawable.image_default,controller.imageView());
     }
 
 }

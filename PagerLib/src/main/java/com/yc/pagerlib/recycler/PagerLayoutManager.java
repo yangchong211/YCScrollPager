@@ -74,7 +74,12 @@ public class PagerLayoutManager extends LinearLayoutManager {
         if (mPagerSnapHelper==null){
             init();
         }
-        mPagerSnapHelper.attachToRecyclerView(mRecyclerView);
+        try {
+            //attachToRecyclerView源码上的方法可能会抛出IllegalStateException异常，这里手动捕获一下
+            mPagerSnapHelper.attachToRecyclerView(mRecyclerView);
+        } catch (IllegalStateException e){
+            e.printStackTrace();
+        }
         mRecyclerView.addOnChildAttachStateChangeListener(mChildAttachStateChangeListener);
     }
 
@@ -146,6 +151,7 @@ public class PagerLayoutManager extends LinearLayoutManager {
     @Override
     public int scrollVerticallyBy(int dy, RecyclerView.Recycler recycler,
                                   RecyclerView.State state) {
+        //需要判断子类的数量不能为0的情况
         if (getChildCount() == 0 || dy == 0) {
             return 0;
         }

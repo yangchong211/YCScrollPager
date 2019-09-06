@@ -39,6 +39,11 @@ public class ScrollPageHelper extends PagerSnapHelper {
         this.gravity = gravity;
     }
 
+    /**
+     * 这个方法是与recyclerView绑定
+     * @param recyclerView                      recyclerView
+     * @throws IllegalStateException
+     */
     @Override
     public void attachToRecyclerView(@Nullable RecyclerView recyclerView)
             throws IllegalStateException {
