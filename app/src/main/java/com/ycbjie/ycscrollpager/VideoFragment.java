@@ -59,19 +59,26 @@ public class VideoFragment extends  Fragment{
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         videoPlayer = view.findViewById(R.id.video_player);
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        Log.d("初始化操作","------"+index++);
         VideoPlayerController controller = new VideoPlayerController(getActivity());
         videoPlayer.setUp(url,null);
         videoPlayer.setPlayerType(ConstantKeys.IjkPlayerType.TYPE_IJK);
         videoPlayer.setController(controller);
         ImageUtils.loadImgByPicasso(getActivity(),image,
                 R.drawable.image_default,controller.imageView());
-        //videoPlayer.start();
+        //不从上一次位置播放，也就是每次从0播放
+        videoPlayer.continueFromLastPosition(false);
+        videoPlayer.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                videoPlayer.start();
+            }
+        },50);
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        Log.d("初始化操作","------"+index++);
     }
 
 }

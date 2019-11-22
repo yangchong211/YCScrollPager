@@ -34,6 +34,10 @@
             android:screenOrientation="portrait"
             />
         <activity android:name=".ScrollPagerTwoActivity"/>
+        <activity android:name=".TestRecyclerActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            />
     </application>
 
 </manifest>

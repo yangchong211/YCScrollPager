@@ -46,6 +46,18 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this,ScrollPagerVideoActivity.class));
             }
         });
+        findViewById(R.id.tv_6).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,TestRecyclerActivity.class));
+            }
+        });
+        findViewById(R.id.tv_7).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,ScrollPagerVideoActivity.class));
+            }
+        });
     }
 
 

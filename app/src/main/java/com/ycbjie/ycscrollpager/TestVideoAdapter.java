@@ -14,13 +14,13 @@ import org.yczbj.ycvideoplayerlib.player.VideoPlayer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHolder> {
+public class TestVideoAdapter extends RecyclerView.Adapter<TestVideoAdapter.VideoViewHolder> {
 
     private Context mContext;
     private List<Video> mVideoList;
     private ArrayList<Integer> data;
 
-    public VideoAdapter(Context context, List<Video> videoList) {
+    public TestVideoAdapter(Context context, List<Video> videoList) {
         mContext = context;
         mVideoList = videoList;
         data = DataProvider.getData(context);
@@ -28,7 +28,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
 
     @Override
     public VideoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(mContext).inflate(R.layout.item_video_pager,
+        View itemView = LayoutInflater.from(mContext).inflate(R.layout.item_my_video,
                 parent, false);
         VideoViewHolder holder = new VideoViewHolder(itemView);
         //创建视频播放控制器，主要只要创建一次就可以呢
@@ -71,18 +71,9 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
         void bindData(Video video, int position) {
             mController.setTitle(video.getTitle());
             //mController.setLength(video.getLength());
-            ImageUtils.loadImgByPicasso(itemView.getContext(),data.get(position),
-                    R.drawable.image_default,mController.imageView());
             mVideoPlayer.setUp(video.getVideoUrl(), null);
             //不从上一次位置播放，也就是每次从0播放
             mVideoPlayer.continueFromLastPosition(false);
-            mVideoPlayer.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    mVideoPlayer.start();
-                }
-            },50);
-
             //mVideoPlayer.setPlayerType(ConstantKeys.IjkPlayerType.TYPE_IJK);
             //mVideoPlayer.setController(mController);
         }

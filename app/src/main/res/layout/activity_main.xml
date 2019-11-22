@@ -56,5 +56,26 @@
         android:background="@android:color/darker_gray"
         android:text="5，使用ViewPager实现仿抖音上下一次滑动一页视频效果"/>
 
+
+    <TextView
+        android:id="@+id/tv_6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/darker_gray"
+        android:text="6，使用RecyclerView实现list一次滑动一个item"/>
+
+
+    <TextView
+        android:id="@+id/tv_7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/darker_gray"
+        android:text="7，使用ViewPager实现list一次滑动一个item"/>
+
+
 </LinearLayout>
 
