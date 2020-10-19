@@ -4,7 +4,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 
-import com.yc.cn.ycbannerlib.snap.ScrollPageHelper;
+import com.yc.pagerlib.recycler.ScrollPageHelper;
 
 import org.yczbj.ycvideoplayerlib.manager.VideoPlayerManager;
 import org.yczbj.ycvideoplayerlib.player.VideoPlayer;

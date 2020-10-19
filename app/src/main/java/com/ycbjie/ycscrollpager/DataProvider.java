@@ -104,9 +104,9 @@ public class DataProvider {
 
     public static ArrayList<Integer> getData(Context context){
         ArrayList<Integer> data = new ArrayList<>();
-        TypedArray bannerImage = context.getResources().obtainTypedArray(R.array.image_girls);
+        TypedArray bannerImage = context.getResources().obtainTypedArray(R.array.data_narrow_Image);
         for (int i = 0; i < 50 ; i++) {
-            int image = bannerImage.getResourceId(i, R.drawable.girl2);
+            int image = bannerImage.getResourceId(i, R.drawable.bg_small_autumn_tree_min);
             data.add(image);
         }
         bannerImage.recycle();
