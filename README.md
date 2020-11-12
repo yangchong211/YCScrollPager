@@ -57,9 +57,9 @@
 ### 03.具体使用
 #### 3.0 如何引用该lib
 - 直接添加依赖即可
-```
-implementation 'com.yc:PagerLib:1.0.1'
-```
+    ```
+    implementation 'com.yc:PagerLib:1.0.4'
+    ```
 
 
 

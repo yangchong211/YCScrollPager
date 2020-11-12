@@ -13,69 +13,42 @@
         android:id="@+id/tv_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
         android:layout_marginTop="10dp"
-        android:background="@android:color/darker_gray"
-        android:text="1，使用ViewPager实现仿抖音上下一次滑动一页图片效果"/>
-
+        android:padding="10dp"
+        android:background="@color/colorAccent"
+        android:text="1 在fragment的列表播放"/>
     <TextView
         android:id="@+id/tv_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
         android:layout_marginTop="10dp"
-        android:background="@android:color/darker_gray"
-        android:text="2，使用RecyclerView实现仿抖音上下一次滑动一页图片效果"/>
-
-
+        android:padding="10dp"
+        android:background="@color/colorAccent"
+        android:text="2 在fragment的列表播放，自动播放"/>
     <TextView
         android:id="@+id/tv_3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
         android:layout_marginTop="10dp"
-        android:background="@android:color/darker_gray"
-        android:text="3，使用ViewPager实现仿抖音上下一次滑动一页图片效果"/>
-
+        android:padding="10dp"
+        android:background="@color/colorAccent"
+        android:text="3 在列表中播放，类似抖音，使用ViewPager"/>
     <TextView
         android:id="@+id/tv_4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
         android:layout_marginTop="10dp"
-        android:background="@android:color/darker_gray"
-        android:text="4，使用RecyclerView实现仿抖音上下一次滑动一页视频效果"/>
-
-
+        android:padding="10dp"
+        android:background="@color/colorAccent"
+        android:text="4 在列表中播放，类似抖音，使用RecyclerView"/>
     <TextView
         android:id="@+id/tv_5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
         android:layout_marginTop="10dp"
-        android:background="@android:color/darker_gray"
-        android:text="5，使用ViewPager实现仿抖音上下一次滑动一页视频效果"/>
-
-
-    <TextView
-        android:id="@+id/tv_6"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:padding="10dp"
-        android:layout_marginTop="10dp"
-        android:background="@android:color/darker_gray"
-        android:text="6，使用RecyclerView实现list一次滑动一个item"/>
-
-
-    <TextView
-        android:id="@+id/tv_7"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:layout_marginTop="10dp"
-        android:background="@android:color/darker_gray"
-        android:text="7，使用ViewPager实现list一次滑动一个item"/>
-
+        android:background="@color/colorAccent"
+        android:text="5 在fragment的列表播放无缝切换"/>
 
 </LinearLayout>
 

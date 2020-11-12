@@ -1,11 +1,11 @@
 package com.ycbjie.ycscrollpager;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import java.util.concurrent.CountDownLatch;
+import com.ycbjie.ycscrollpager.list.TestListActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,45 +17,43 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.tv_1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,ScrollPagerActivity.class));
+                Intent intent = new Intent(MainActivity.this, TestListActivity.class);
+                intent.putExtra("type",0);
+                startActivity(intent);
             }
         });
         findViewById(R.id.tv_2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,ScrollRecyclerActivity.class));
+                Intent intent = new Intent(MainActivity.this, TestListActivity.class);
+                intent.putExtra("type",1);
+                startActivity(intent);
             }
         });
 
         findViewById(R.id.tv_3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,ScrollPagerTwoActivity.class));
+                Intent intent = new Intent(MainActivity.this, TestListActivity.class);
+                intent.putExtra("type",2);
+                startActivity(intent);
             }
         });
 
         findViewById(R.id.tv_4).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,ScrollRecyclerVideoActivity.class));
+                Intent intent = new Intent(MainActivity.this, TestListActivity.class);
+                intent.putExtra("type",3);
+                startActivity(intent);
             }
         });
         findViewById(R.id.tv_5).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,ScrollPagerVideoActivity.class));
-            }
-        });
-        findViewById(R.id.tv_6).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,TestRecyclerActivity.class));
-            }
-        });
-        findViewById(R.id.tv_7).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,ScrollPagerVideoActivity.class));
+                Intent intent = new Intent(MainActivity.this, TestListActivity.class);
+                intent.putExtra("type",4);
+                startActivity(intent);
             }
         });
     }
