@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-import com.yc.kernel.utils.VideoLogUtils;
 import com.yc.video.config.ConstantKeys;
 import com.yc.video.config.VideoInfoBean;
 import com.yc.video.player.SimpleStateListener;
@@ -21,6 +20,7 @@ import com.yc.video.player.VideoPlayer;
 import com.yc.video.player.VideoViewManager;
 import com.yc.video.tool.PlayerUtils;
 import com.yc.video.ui.view.BasisVideoController;
+import com.yc.videotool.VideoLogUtils;
 import com.ycbjie.ycscrollpager.ConstantVideo;
 import com.ycbjie.ycscrollpager.R;
 

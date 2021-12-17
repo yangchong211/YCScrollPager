@@ -14,10 +14,10 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 
-import com.yc.kernel.utils.VideoLogUtils;
+import com.yc.video.bridge.ControlWrapper;
 import com.yc.video.config.ConstantKeys;
-import com.yc.video.controller.ControlWrapper;
 import com.yc.video.ui.view.InterControlView;
+import com.yc.videotool.VideoLogUtils;
 import com.ycbjie.ycscrollpager.R;
 
 

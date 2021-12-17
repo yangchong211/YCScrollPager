@@ -8,7 +8,6 @@ import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 
-import com.yc.kernel.utils.VideoLogUtils;
 import com.yc.pagerlib.pager.VerticalViewPager;
 import com.yc.video.config.ConstantKeys;
 import com.yc.video.config.VideoInfoBean;
@@ -17,6 +16,7 @@ import com.yc.video.tool.PlayerUtils;
 import com.yc.video.ui.view.BasisVideoController;
 import com.yc.videocache.cache.PreloadManager;
 import com.yc.videocache.cache.ProxyVideoCacheManager;
+import com.yc.videotool.VideoLogUtils;
 import com.ycbjie.ycscrollpager.ConstantVideo;
 import com.ycbjie.ycscrollpager.R;
 

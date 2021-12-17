@@ -12,16 +12,31 @@
     - 4.1 ViewPager改变滑动速率
     - 4.2 PagerSnapHelper注意点
     - 4.3 自定义LayoutManager注意点
+- 05.关于通用视频播放器
+    - 5.1 通用视频播放器
 - 06.其他说明介绍
 
 
 
 ### 00.先来看一下效果图
-- ![image](https://img-blog.csdnimg.cn/20190908214327374.gif)
+![image](https://img-blog.csdnimg.cn/20201013091432693.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzM3NzAwMjc1,size_16,color_FFFFFF,t_70#pic_center)
+![image](https://img-blog.csdnimg.cn/20201013091432695.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzM3NzAwMjc1,size_16,color_FFFFFF,t_70#pic_center)
+![image](https://img-blog.csdnimg.cn/20201013091432667.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzM3NzAwMjc1,size_16,color_FFFFFF,t_70#pic_center)
+![image](https://img-blog.csdnimg.cn/20201013091432667.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzM3NzAwMjc1,size_16,color_FFFFFF,t_70#pic_center)
+![image](https://img-blog.csdnimg.cn/20201013091432625.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzM3NzAwMjc1,size_16,color_FFFFFF,t_70#pic_center)
+![image](https://img-blog.csdnimg.cn/20201013091432602.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzM3NzAwMjc1,size_16,color_FFFFFF,t_70#pic_center)
+![image](https://img-blog.csdnimg.cn/20201013091432603.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzM3NzAwMjc1,size_16,color_FFFFFF,t_70#pic_center)
+![image](https://img-blog.csdnimg.cn/20201013091432616.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzM3NzAwMjc1,size_16,color_FFFFFF,t_70#pic_center)
+![image](https://img-blog.csdnimg.cn/20201013091432581.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzM3NzAwMjc1,size_16,color_FFFFFF,t_70#pic_center)
+![image](https://img-blog.csdnimg.cn/20201013091432668.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzM3NzAwMjc1,size_16,color_FFFFFF,t_70#pic_center)
+![image](https://img-blog.csdnimg.cn/20201016132752350.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzM3NzAwMjc1,size_16,color_FFFFFF,t_70#pic_center)
+![image](https://img-blog.csdnimg.cn/20201016132752342.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzM3NzAwMjc1,size_16,color_FFFFFF,t_70#pic_center)
+
 
 
 ### 01.先来看一下需求
-- 项目中的视频播放，要求实现抖音那种竖直方向一次滑动一页的效果。滑动要流畅不卡顿，并且手动触摸滑动超过1/2的时候松开可以滑动下一页，没有超过1/2返回原页。
+- 项目中的视频播放，要求实现抖音那种竖直方向一次滑动一页的效果。
+    - 滑动要流畅不卡顿，并且手动触摸滑动超过1/2的时候松开可以滑动下一页，没有超过1/2返回原页。
 - 手指拖动页面滑动，只要没有切换到其他的页面，视频都是在播放的。切换了页面，上一个视频销毁，该页面则开始初始化播放。
 - 切换页面的时候过渡效果要自然，避免出现闪屏。具体的滑动效果，可以直接参考抖音……
 
@@ -232,6 +247,17 @@
 - 通过SnapHelper调用findSnapView方法，得到的view，一定要增加非空判断逻辑，否则很容易造成崩溃。
 - 在监听滚动位移scrollVerticallyBy的时候，注意要增加判断，就是getChildCount()如果为0时，则需要返回0。
 - 在onDetachedFromWindow调用的时候，可以把listener监听事件给remove掉。
+
+
+### 05.关于通用视频播放器
+#### 5.1 通用视频播放器
+- 基础封装视频播放器player，可以在ExoPlayer、MediaPlayer，声网RTC视频播放器内核，原生MediaPlayer可以自由切换
+- 对于视图状态切换和后期维护拓展，避免功能和业务出现耦合。比如需要支持播放器UI高度定制，而不是该lib库中UI代码
+- 针对视频播放，音频播放，播放回放，以及视频直播的功能。使用简单，代码拓展性强，封装性好，主要是和业务彻底解耦，暴露接口监听给开发者处理业务具体逻辑
+- 该播放器整体架构：播放器内核(自由切换) +  视频播放器 + 边播边缓存 + 高度定制播放器UI视图层
+- 项目地址：https://github.com/yangchong211/YCVideoPlayer
+- 关于视频播放器整体功能介绍文档：https://juejin.im/post/6883457444752654343
+
 
 
 ### 06.其他说明介绍

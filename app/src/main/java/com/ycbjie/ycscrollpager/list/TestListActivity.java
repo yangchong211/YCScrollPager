@@ -1,6 +1,5 @@
 package com.ycbjie.ycscrollpager.list;
 
-import com.yc.video.old.other.VideoPlayerManager;
 import com.ycbjie.ycscrollpager.BaseActivity;
 import com.ycbjie.ycscrollpager.R;
 import com.ycbjie.ycscrollpager.tiktok.TikTok1ListFragment;
@@ -11,14 +10,6 @@ import com.ycbjie.ycscrollpager.tiktok.TikTokListFragment;
  * @author yc
  */
 public class TestListActivity extends BaseActivity {
-
-    @Override
-    public void onBackPressed() {
-        if (VideoPlayerManager.instance().onBackPressed()) {
-            return;
-        }
-        super.onBackPressed();
-    }
 
     @Override
     public int getContentView() {

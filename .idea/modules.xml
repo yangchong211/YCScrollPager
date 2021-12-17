@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/GitHub-YCScrollPager.iml" filepath="$PROJECT_DIR$/.idea/modules/GitHub-YCScrollPager.iml" group="YCScrollPager" />
-      <module fileurl="file://$PROJECT_DIR$/PagerLib/PagerLib.iml" filepath="$PROJECT_DIR$/PagerLib/PagerLib.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ScrollPagerLib/ScrollPagerLib.iml" filepath="$PROJECT_DIR$/ScrollPagerLib/ScrollPagerLib.iml" />
-      <module fileurl="file://$PROJECT_DIR$/YCScrollPager.iml" filepath="$PROJECT_DIR$/YCScrollPager.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/YCScrollPager-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/YCScrollPager-app.iml" group="YCScrollPager/app" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/PagerLib/com.yc-PagerLib.iml" filepath="$PROJECT_DIR$/.idea/modules/PagerLib/com.yc-PagerLib.iml" group="YCScrollPager/PagerLib" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/YCScrollPager.iml" filepath="$PROJECT_DIR$/.idea/modules/YCScrollPager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/PagerLib/YCScrollPager.PagerLib.iml" filepath="$PROJECT_DIR$/.idea/modules/PagerLib/YCScrollPager.PagerLib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/YCScrollPager.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/YCScrollPager.app.iml" />
     </modules>
   </component>
 </project>

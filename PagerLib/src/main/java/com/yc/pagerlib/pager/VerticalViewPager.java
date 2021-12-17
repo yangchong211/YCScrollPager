@@ -17,14 +17,15 @@ import androidx.core.os.ParcelableCompat;
 import androidx.core.os.ParcelableCompatCreatorCallbacks;
 import androidx.core.view.AccessibilityDelegateCompat;
 import androidx.core.view.MotionEventCompat;
-import android.support.v4.view.PagerAdapter;
 import androidx.core.view.VelocityTrackerCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.ViewConfigurationCompat;
-import android.support.v4.view.ViewPager;
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
 import androidx.core.view.accessibility.AccessibilityRecordCompat;
 import androidx.core.widget.EdgeEffectCompat;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.FocusFinder;
@@ -47,8 +48,13 @@ import java.util.Collections;
 import java.util.Comparator;
 
 /**
- * Created by castorflex on 12/29/13.
- * Just a copy of the original ViewPager modified to support vertical Scrolling
+ * <pre>
+ *     @author 杨充
+ *     blog  : https://github.com/yangchong211
+ *     time  : 2019/6/20
+ *     desc  : 竖直方向ViewPager
+ *     revise:
+ * </pre>
  */
 public class VerticalViewPager extends ViewGroup {
 

@@ -40,7 +40,7 @@ public class PagerLayoutManager extends LinearLayoutManager {
     private OnPagerListener mOnViewPagerListener;
     private static final int HORIZONTAL = OrientationHelper.HORIZONTAL;
     private static final int VERTICAL = OrientationHelper.VERTICAL;
-    private int mOrientation;
+    private final int mOrientation;
     /**
      * 位移，用来判断移动方向
      */
@@ -203,7 +203,7 @@ public class PagerLayoutManager extends LinearLayoutManager {
         this.mOnViewPagerListener = listener;
     }
 
-    private RecyclerView.OnChildAttachStateChangeListener mChildAttachStateChangeListener =
+    private final RecyclerView.OnChildAttachStateChangeListener mChildAttachStateChangeListener =
             new RecyclerView.OnChildAttachStateChangeListener() {
         /**
          * 第一次进入界面的监听，可以做初始化方面的操作
