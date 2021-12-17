@@ -40,8 +40,8 @@ import java.util.Locale;
 public class ScrollPageHelper extends PagerSnapHelper {
 
     private OrientationHelper mHorizontalHelper, mVerticalHelper;
-    private int gravity;
-    private boolean snapLastItem;
+    private final int gravity;
+    private final boolean snapLastItem;
     private boolean isRtlHorizontal;
 
     /**
@@ -294,6 +294,5 @@ public class ScrollPageHelper extends PagerSnapHelper {
         }
         return null;
     }
-
 
 }
