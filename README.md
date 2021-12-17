@@ -14,6 +14,7 @@
     - 4.3 自定义LayoutManager注意点
 - 05.关于通用视频播放器
     - 5.1 通用视频播放器
+    - 5.2 视频播放器架构图
 - 06.其他说明介绍
 
 
@@ -73,7 +74,7 @@
 #### 3.0 如何引用该lib
 - 直接添加依赖即可
     ```
-    implementation 'com.yc:PagerLib:1.0.4'
+    implementation 'com.github.yangchong211:YCScrollPager:1.0.0'
     ```
 
 
@@ -257,6 +258,10 @@
 - 该播放器整体架构：播放器内核(自由切换) +  视频播放器 + 边播边缓存 + 高度定制播放器UI视图层
 - 项目地址：https://github.com/yangchong211/YCVideoPlayer
 - 关于视频播放器整体功能介绍文档：https://juejin.im/post/6883457444752654343
+
+
+#### 5.2 视频播放器架构图
+![image](https://img-blog.csdnimg.cn/20201016173604612.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzM3NzAwMjc1,size_16,color_FFFFFF,t_70#pic_center)
 
 
 
